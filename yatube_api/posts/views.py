@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, filters
 from rest_framework.permissions import IsAuthenticated
-from .models import Post, Group, Follow
+from .models import Post, Comment, Group, Follow
 from .serializers import PostSerializer, CommentSerializer, GroupSerializer, FollowSerializer
 from .permissions import IsAuthorOrReadOnly
 
@@ -21,8 +21,10 @@ class GroupViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = [IsAuthorOrReadOnly]
+    pagination_class = None
 
     def get_queryset(self):
         post_id = self.kwargs.get('post_id')
