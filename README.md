@@ -72,6 +72,3 @@ POST /api/v1/follow/
 GET /api/v1/follow/?search=bob
 Заголовок: Authorization: Bearer <access_token>
 Ответ: [{"user": "your_username", "following": "bob"}]
-
-ЛИЦЕНЗИЯ
-MIT
